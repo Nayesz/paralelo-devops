@@ -1,0 +1,11 @@
+
+services:
+  api:
+    build: 
+      context: .
+      args:
+        - BUILD_DATE=${BUILD_DATE}
+    container_name: spring_app
+    image: spring_app:${APP_VERSION}
+    ports:
+      - "8080:8080"
