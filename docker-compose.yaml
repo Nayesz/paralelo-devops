@@ -1,0 +1,11 @@
+
+services:
+  api:
+    build: 
+      context: .
+      args:
+        - BUILD_DATE=$(date -u +'%Y-%m-%dT%H:%M:%SZ')
+        - APP_VERSION="1.0.0"
+    container_name: spring_app
+    ports:
+      - "8080:8080"
