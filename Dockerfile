@@ -24,7 +24,6 @@ RUN mvn clean package -DskipTests
 # STAGE 2 - PRD
 # =========================
 
-
 FROM eclipse-temurin:${TAG_VERSION} AS prd
 
 ARG APP_VERSION=1.0.0
@@ -36,6 +35,9 @@ LABEL org.opencontainers.image.created=$BUILD_DATE \
       description="Side Project DevOps"
 
 WORKDIR /app
+
+RUN addgroup -S appgroup && adduser -S appuser -G appgroup  # Se crea usuario no-root
+USER appuser
 
 COPY --from=build /app/target/*.jar app.jar
 
