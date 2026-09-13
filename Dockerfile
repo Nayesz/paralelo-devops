@@ -24,9 +24,16 @@ RUN mvn clean package -DskipTests
 # STAGE 2 - PRD
 # =========================
 
-ARG TAG_VERSION=25-jre-alpine
 
 FROM eclipse-temurin:${TAG_VERSION} AS prd
+
+ARG APP_VERSION=1.0.0
+ARG BUILD_DATE
+
+LABEL org.opencontainers.image.created=$BUILD_DATE \
+      org.opencontainers.image.version=$APP_VERSION \
+      maintainer="Nayesz" \
+      description="Side Project DevOps"
 
 WORKDIR /app
 
